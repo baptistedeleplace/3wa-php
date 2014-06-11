@@ -2,14 +2,14 @@
 
 # on nettoie les variables d'input
 $cid = 0;
-if( isset($_GET['cid']) and 
+if( isset($_GET['cid']) and
 	is_numeric($_GET['cid'])
 ){
 	$cid = intval($_GET['cid']);
 }
 
 $from = 0;
-if( isset($_GET['from']) and 
+if( isset($_GET['from']) and
 	is_numeric($_GET['from'])
 ){
 	$from = intval($_GET['from']);
@@ -26,14 +26,16 @@ $link = mysqli_connect(
 );
 
 /**
-	La liste de toutes les catégories
+	============================================================
+	1. La liste de toutes les catégories
+	============================================================
 */
 $categories = array();
 
 # construction de la chaine (string), qui servira de requête SQL
 $sql1 = "
-	SELECT * 
-	FROM `categorys` 
+	SELECT *
+	FROM `categorys`
 ";
 
 # envoi de cette requête à MySQL
@@ -42,7 +44,7 @@ $q1 = mysqli_query($link, $sql1);
 
 # on stocke dans un tableau provisoire les données
 # http://www.w3schools.com/php/func_mysqli_fetch_array.asp
-while ($data = mysqli_fetch_array($q1, MYSQLI_ASSOC)) 
+while ($data = mysqli_fetch_array($q1, MYSQLI_ASSOC))
 {
 	$categories[$data['category_id']] = array(
 		'category_id' => $data['category_id'],
@@ -52,34 +54,38 @@ while ($data = mysqli_fetch_array($q1, MYSQLI_ASSOC))
 }
 
 /**
-	Le titre de la catégorie en cours
+	============================================================
+	2. Le titre de la catégorie en cours
+	============================================================
 */
 
 # on met un titre par défaut ...
 $category_title = 'Bienvenue chez LegoMania !';
 
 # ... et on l'écrase si la catégorie en cours existe
-if(isset($categories[$cid])) 
+if(isset($categories[$cid]))
 {
 	$category_title = 'Les legos ' . $categories[$cid]['name'] . ' !';
 }
 
 /**
-	Les produits de la catégorie en cours 
+	============================================================
+	3. Les produits de la catégorie en cours
+	============================================================
 */
 $legos = array();
 
-# on créé le premier morceau de la chaine (string) 
+# on créé le premier morceau de la chaine (string)
 # de notre future requête SQL ...
 $sql2 = "
 	SELECT
-		`legos`.`name`, 
-		( 
-			( `legos`.`price` * `categorys`.`margin_rate` ) 
-			+ `categorys`.`expedition_price` 
+		`legos`.`name`,
+		(
+			( `legos`.`price` * `categorys`.`margin_rate` )
+			+ `categorys`.`expedition_price`
 		) AS total_price
 	FROM  `legos`
-	LEFT JOIN `categorys` 
+	LEFT JOIN `categorys`
 		ON `categorys`.`category_id` = `legos`.`category_id`
 ";
 
@@ -99,7 +105,7 @@ $sql2 .= "
 $q2 = mysqli_query($link, $sql2);
 
 # on stocke dans un tableau provisoire les données
-while ($data = mysqli_fetch_array($q2, MYSQLI_ASSOC)) 
+while ($data = mysqli_fetch_array($q2, MYSQLI_ASSOC))
 {
 	$legos[] = array(
 		'name' => ucfirst($data['name']),
@@ -109,15 +115,17 @@ while ($data = mysqli_fetch_array($q2, MYSQLI_ASSOC))
 
 
 /**
-	Génération de la pagination
+	============================================================
+	4. Génération de la pagination
+	============================================================
 */
 $paginations = array();
 
 # construction de la chaine (string), qui servira de requête SQL
 $sql3 = "
-	SELECT 
+	SELECT
 		COUNT(*) AS n
-	FROM `legos` 
+	FROM `legos`
 ";
 # si $cid est OK, on complète cette chaîne
 if($cid){
@@ -149,4 +157,4 @@ for ($i=1; $i <= $n_pages; $i++)
 if ($n_pages <= 1){
 	$paginations = array();
 }
-	
+

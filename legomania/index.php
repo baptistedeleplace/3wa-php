@@ -1,5 +1,5 @@
 <?php
-	
+
 	// j'isole mon code php
 	include 'php/controller.php';
 
@@ -41,9 +41,11 @@
 			<div class="container">
 
 <?php /**
+	============================================================
 	Affichage du titre
+	============================================================
 */ ?>
-	
+
 <h1><?php echo $category_title; ?></h1>
 
 				<p>Le site de tout les légos, même pas chers.</p>
@@ -55,7 +57,9 @@
 
 			<ul class="nav nav-tabs">
 <?php /**
+	============================================================
 	Affichage des catégories
+	============================================================
 */ ?>
 
 	<li <?php if($cid == 0) echo 'class="active"'; ?> >
@@ -77,13 +81,15 @@
 			<div class="row">
 
 <?php /**
+	============================================================
 	Affichage des légos
+	============================================================
 */ ?>
 
 <?php if (empty($legos)): ?>
 
 	<p><i>Oups! Il n'y a pas de légo dans cette catégorie :(</i></p>
-	
+
 <?php else: ?>
 
 	<?php foreach ($legos as $l): ?>
@@ -104,19 +110,21 @@
 			<hr>
 
 <?php /**
+	============================================================
 	Affichage de la pagination
+	============================================================
 */ ?>
 
 <ul class="pagination">
 
 	<?php foreach ($paginations as $p): ?>
-	
+
 		<li>
 			<a href="<?php echo $p['uri']; ?>">
 				<?php echo $p['page_number']; ?>
 			</a>
 		</li>
-	
+
 	<?php endforeach ?>
 
 </ul>
@@ -148,6 +156,6 @@
 			r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
 			ga('create','UA-XXXXX-X');ga('send','pageview');
 		</script>
-	
+
 	</body>
 </html>
