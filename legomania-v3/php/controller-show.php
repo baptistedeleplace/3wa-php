@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 # on nettoie la variable d'input
 $lid = 0;
 if( isset($_GET['lid']) and
@@ -14,7 +16,9 @@ if(!$lid){
 	header("location: index.php");
 }
 
-include 'db-connect.php';
+include 'functions.php';
+
+$link = get_db_link();
 
 /**
 	============================================================
