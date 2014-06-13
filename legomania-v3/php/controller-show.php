@@ -59,7 +59,7 @@ $data = mysqli_fetch_array($q, MYSQLI_ASSOC);
 
 $lego = array(
 	'lego_id' 		=> $data['lego_id'],
-	'name' 			=> ucfirst($data['name']),
+	'name' => ucfirst(utf8_encode($data['name'])),
 	'total_price' 	=> round($data['total_price'], 2),
 	'category_id' 	=> $data['category_id'],
 	'category' 		=> ucfirst($data['category_name']),

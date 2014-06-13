@@ -39,7 +39,7 @@ function get_all_categories ()
 	{
 		$categories[$data['category_id']] = array(
 			'category_id' => $data['category_id'],
-			'name' => ucfirst($data['name']),
+			'name' => ucfirst(utf8_encode($data['name'])),
 			'description' => ucfirst($data['description']),
 		);
 	}
