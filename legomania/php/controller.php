@@ -81,7 +81,7 @@ $sql2 = "
 	SELECT
 		`legos`.`name`,
 		(
-			( `legos`.`price` * `categorys`.`margin_rate` )
+			`legos`.`price` * ( `categorys`.`margin_rate` + 1 )
 			+ `categorys`.`expedition_price`
 		) AS total_price
 	FROM  `legos`
