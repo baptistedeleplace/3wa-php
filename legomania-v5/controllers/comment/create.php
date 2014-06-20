@@ -7,7 +7,7 @@ if(!is_connected()){
 
 /**
 	============================================================
-	Enregistrement d'un nouveau produit
+	Enregistrement d'un nouveau commentaire
 	============================================================
 */
 
