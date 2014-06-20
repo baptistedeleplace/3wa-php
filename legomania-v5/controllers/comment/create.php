@@ -13,6 +13,16 @@ if(!is_connected()){
 
 $link = get_db_link();
 
+$a = 3;
+/*
+
+
+
+qqsd
+*/
+
+
+
 # on nettoie les variables d'input
 $lego_id = intval($_POST['lego_id']);
 $user_id = intval($_SESSION['user_id']);
