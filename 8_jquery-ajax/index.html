@@ -6,7 +6,7 @@
 	<body>
 
 		<div id="content">
-			<h1>Bienvenu !</h1>
+			<h1>Bienvenue !</h1>
 		</div>
 
 		<button id="btn">Clic</button>
@@ -17,7 +17,9 @@
 
 				$('#btn').click(function(){
 
-					$('#content').html('yo');
+					var html = '<img src="http://www.ac-grenoble.fr/ien.vienne1-2/spip/IMG/jpg_foot.jpg">';
+
+					$('#content').html(html);
 
 				});
 
