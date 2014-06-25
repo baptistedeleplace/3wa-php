@@ -40,4 +40,4 @@ $sql = "
 mysqli_query($link, $sql);
 
 # redirection HTTP à la fin du traitement
-header("location: message_index.php");
+header("location: message_new.php");

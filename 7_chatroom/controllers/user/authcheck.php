@@ -5,4 +5,4 @@ if(!isset($_POST['nickname']) or empty($_POST['nickname']))
 
 $_SESSION['nickname'] = $_POST['nickname'];
 
-header("Location: message_index.php");
+header("Location: message_new.php");
