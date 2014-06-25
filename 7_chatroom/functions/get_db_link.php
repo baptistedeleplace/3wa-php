@@ -7,10 +7,11 @@ function get_db_link ()
 {
 
 	return mysqli_connect(
-		'localhost', 	# adresse du serveur
+		'192.168.1.117', 	# adresse du serveur
+//		'localhost', 	# adresse du serveur
 		'root',			# login
-		'',
-//		'troiswa',		# password
+//		'',
+		'troiswa',		# password
 		'chat'		# nom de la base de donnée
 	);
 
