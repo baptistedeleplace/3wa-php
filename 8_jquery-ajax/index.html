@@ -9,11 +9,17 @@
 			<h1>Bienvenu !</h1>
 		</div>
 
+		<button id="btn">Clic</button>
+
 		<script type="text/javascript">
 
 			jQuery(document).ready(function($) {
 
-				// ici on va coder ...
+				$('#btn').click(function(){
+
+					$('#content').html('yo');
+
+				});
 
 			});
 
