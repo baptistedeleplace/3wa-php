@@ -20,6 +20,10 @@
 					$.ajax({
 						url: 'ajax.php',
 						type: "GET",
+						data: {
+							a: 13,
+							name: 'baptiste'
+						},
 						success:function (html) {
 
 							$('#content').html(html);
