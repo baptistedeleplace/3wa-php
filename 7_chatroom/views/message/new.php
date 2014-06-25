@@ -21,10 +21,6 @@
 
 			<hr>
 
-			<button id="btn">Rafraichir</button>
-
-			<hr>
-
 			<div id="messages"></div>
 
 		</div>
@@ -35,20 +31,25 @@
 
 <script type="text/javascript">
 
+	function refresh_messages ()
+	{
+		$.ajax({
+			url: 'message_index.php',
+			success:function (html) {
+				$('#messages').html(html);
+			}
+		});
+	}
+
+	refresh_messages();
+
 	jQuery(document).ready(function($) {
 
-		$('#btn').click(function() {
+		setInterval(function(){
 
-			$.ajax({
-				url: 'message_index.php',
-				success:function (html) {
+			refresh_messages();
 
-					$('#messages').html(html);
-
-				}
-			});
-
-		});
+		}, 1000);
 
 	});
 
