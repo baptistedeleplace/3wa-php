@@ -15,11 +15,18 @@
 
 			jQuery(document).ready(function($) {
 
-				$('#btn').click(function(){
+				$('#btn').click(function() {
 
-					var html = '<img src="http://www.ac-grenoble.fr/ien.vienne1-2/spip/IMG/jpg_foot.jpg">';
 
-					$('#content').html(html);
+					$.ajax({
+						url: 'ajax.php',
+						type: "GET",
+						success:function (html) {
+
+							$('#content').html(html);
+
+						}
+					});
 
 				});
 
