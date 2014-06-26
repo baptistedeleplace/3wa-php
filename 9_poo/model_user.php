@@ -30,7 +30,9 @@ Class User
 	public function get_age ()
 	{
 
-		return date('Y') - $this->nickname;
+		$age = date('Y') - $this->year_of_birth;
+
+		return $age;
 
 	}
 }
