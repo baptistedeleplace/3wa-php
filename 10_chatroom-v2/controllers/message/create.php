@@ -13,6 +13,7 @@ if(!isset($_SESSION['nickname'])){
 
 
 $m = new Message;
+
 $m->add($_SESSION['nickname'], $_POST['content']);
 
 # redirection HTTP à la fin du traitement
