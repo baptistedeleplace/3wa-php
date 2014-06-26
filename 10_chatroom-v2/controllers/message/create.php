@@ -1,7 +1,8 @@
 <?php
 
 # s'il n'est pas authentifié il est éjecté de la page
-if(!isset($_SESSION['nickname'])){
+if(!User::is_login())
+{
 	header("location: user_auth.php");
 }
 
@@ -11,10 +12,7 @@ if(!isset($_SESSION['nickname'])){
 	============================================================
 */
 
-
-$m = new Message;
-
-$m->add($_SESSION['nickname'], $_POST['content']);
+(new Message)->add($_SESSION['nickname'], $_POST['content']);
 
 # redirection HTTP à la fin du traitement
 header("location: message_new.php");

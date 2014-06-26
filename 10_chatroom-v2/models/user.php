@@ -24,4 +24,18 @@ Class User
 		return true;
 	}
 
+/**
+	Enregistrement de user en session
+*/
+
+	public static function is_login ()
+	{
+		if(isset($_SESSION['nickname']) and !empty($_SESSION['nickname']))
+		{
+			return true;
+		}
+
+		return false;
+	}
+
 }
