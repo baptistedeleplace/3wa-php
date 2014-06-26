@@ -1,4 +1,4 @@
 Objectifs
 =======
-- Création d'un chat
-- jQuery et AJAX
+- Mise en pratique de la POO
+- Découverte de la couche modèle
