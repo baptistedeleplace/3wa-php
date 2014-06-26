@@ -3,6 +3,7 @@
 if(!isset($_POST['nickname']) or empty($_POST['nickname']))
 	header("Location: user_auth.php");
 
-$_SESSION['nickname'] = $_POST['nickname'];
+$u = new User($_POST['nickname']);
+$u->login();
 
 header("Location: message_new.php");
