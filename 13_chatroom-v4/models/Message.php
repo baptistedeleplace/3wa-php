@@ -58,22 +58,20 @@ Class Message extends Db
 */
 	public function get_all ($limit = 30)
 	{
+
 		$messages = array();
 
-		# on créé le premier morceau de la chaine (string)
-		# de notre future requête SQL ...
-		$sql = "
-			SELECT *
-			FROM  `messages`
-			ORDER BY `message_id` DESC
-			LIMIT 0 , " . $limit . "
-		";
+		# url du endpoint
+		$url = 'http://5inq.fr/3wa/chatroom/api/getMessages.php';
 
-		# envoi de cette requête à MySQL
-		$q = mysqli_query($this->db_link, $sql);
+		# requète en GET
+		$json = file_get_contents($url);
 
-		# on stocke dans un tableau provisoire les données
-		while ($data = mysqli_fetch_array($q, MYSQLI_ASSOC))
+		# on parse le JSON obtenu en tableau PHP
+		$datas = json_decode($json, true);
+
+		# On retravaille légèrement ces variables
+		foreach ($datas as $data)
 		{
 			$messages[] = array(
 				'message_id' => $data['message_id'],

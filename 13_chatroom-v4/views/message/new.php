@@ -51,11 +51,9 @@
 	function refresh_messages ()
 	{
 		$.ajax({
-			url: 'http://5inq.fr/3wa/chatroom/api/getMessages.php',
-			dataType: 'json'
-			success:function (json) {
-				console.log(json);
-//				$('#messages').html(html);
+			url: 'message_index.php',
+			success:function (html) {
+				$('#messages').html(html);
 			}
 		});
 	}
