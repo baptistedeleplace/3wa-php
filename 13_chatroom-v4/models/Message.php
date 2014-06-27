@@ -24,31 +24,27 @@ Class Message extends Db
 
 		# on nettoie les variables d'input
 		$nickname = (new User)->get_connected_user();
-		$nickname = mysqli_real_escape_string($this->db_link, $nickname);
 
-		$content = mysqli_real_escape_string($this->db_link, $content);
+		# url du endpoint
+		$url = 'http://5inq.fr/3wa/chatroom/api/addMessage.php';
 
-		# on créé notre requête SQL ...
-		$sql = "
+		# initialisation de cURL
+		$ch = curl_init();
 
-			INSERT INTO  `messages`
-			(
-				`created_at`,
-				`nickname`,
-				`content`
-			)
+		# on présente nos variables POST
+		$fields = array(
+			'nickname' => $nickname,
+			'message' => $content,
+		);
+		$postfields = '';
+		foreach($fields as $key=>$value) { $postfields .= $key.'='.$value.'&'; }
 
-			VALUES
-			(
-				NOW(),
-				'" . $nickname . "',
-				'" . $content . "'
-			)
-
-		";
-
-		# envoi de cette requête à MySQL
-		mysqli_query($this->db_link, $sql);
+		# execution de la requête HTTP via cURL
+		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_POST, count($fields)); # cf. CURLOPT_POST
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $postfields);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		$response = curl_exec($ch);
 
 		return true;
 	}
