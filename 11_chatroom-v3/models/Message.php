@@ -40,7 +40,7 @@ Class Message extends Db
 
 			VALUES
 			(
-				'" . date("Y-m-d H:i:s") . "',
+				NOW(),
 				'" . $nickname . "',
 				'" . $content . "'
 			)

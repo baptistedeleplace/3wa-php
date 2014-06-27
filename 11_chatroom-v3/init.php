@@ -3,6 +3,9 @@
 # on démarre la gestion des sessions
 session_start();
 
+# on force le fuseau horaire sur Paris
+date_default_timezone_set('Europe/Paris');
+
 # on definie quelques constantes
 define('VIEWS_DIR', __DIR__ . '/views/');
 define('CTRLRS_DIR', __DIR__ . '/controllers/');

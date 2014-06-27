@@ -24,7 +24,21 @@
 
 			<hr>
 
-			<div id="messages"></div>
+			<div class="row">
+
+				<div class="col-md-4">
+					<h2>
+						Utilisateurs connectés <br>
+						<small>(actifs ces 30 dernières minutes)</small>
+					</h2>
+					<div id="users"></div>
+				</div>
+
+				<div class="col-md-8">
+					<div id="messages"></div>
+				</div>
+
+			</div>
 
 		</div>
 	</div>
@@ -44,6 +58,16 @@
 		});
 	}
 
+	function refresh_users ()
+	{
+		$.ajax({
+			url: 'user_connected.php',
+			success:function (html) {
+				$('#users').html(html);
+			}
+		});
+	}
+
 	refresh_messages();
 
 	jQuery(document).ready(function($) {
@@ -51,6 +75,7 @@
 		setInterval(function(){
 
 			refresh_messages();
+			refresh_users();
 
 		}, 1000);
 
