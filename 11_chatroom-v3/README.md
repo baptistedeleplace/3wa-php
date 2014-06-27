@@ -1,4 +1,4 @@
 Objectifs
 =======
-- Mise en pratique de la POO
-- Découverte de la couche modèle
+- Exercice "full-stack" : SQL > Model > Ccontroller > View -- Ajax
+
